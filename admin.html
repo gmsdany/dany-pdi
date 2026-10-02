@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor do PDI — Dany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fffaf7; --card:#ffffff; --ink:#241127; --ink-dim:#7d6e7a;
+    --orange:#ff6b35; --pink:#f72585; --amber:#ffb627; --border:rgba(36,17,39,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',sans-serif;padding-bottom:100px;}
+  h1,h2{font-family:'Outfit',sans-serif;font-weight:800;}
+  .topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;z-index:10;flex-wrap:wrap;gap:12px;}
+  .topbar h1{font-size:1.2rem;margin:0;}
+  .topbar h1 span{color:var(--orange);}
+  .wrap{max-width:780px;margin:0 auto;padding:32px 20px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:28px;}
+  .card h2{font-size:1.15rem;margin:0 0 6px;}
+  .card .hint{font-size:0.85rem;color:var(--ink-dim);margin-bottom:18px;font-family:'JetBrains Mono',monospace;}
+  label{display:block;font-size:0.82rem;font-weight:600;margin-bottom:5px;margin-top:14px;}
+  input[type=text], input[type=email], input[type=url], textarea, select{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+    font-family:'Work Sans',sans-serif;font-size:0.95rem;background:#fff;color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:60px;}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .item-block{border:1px dashed var(--border);border-radius:12px;padding:16px;margin-top:14px;position:relative;}
+  .item-block .remove{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--pink);font-size:0.8rem;cursor:pointer;font-family:'JetBrains Mono',monospace;}
+  .add-btn{margin-top:16px;background:var(--bg);border:1px dashed var(--orange);color:var(--orange);padding:10px 16px;border-radius:100px;cursor:pointer;font-weight:600;font-size:0.88rem;}
+  .add-btn:hover{background:#fff1ea;}
+  .footer-actions{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:16px 24px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .btn{padding:13px 26px;border-radius:100px;font-weight:700;font-size:0.95rem;cursor:pointer;border:none;}
+  .btn-primary{background:linear-gradient(120deg,var(--orange),var(--pink));color:#fff;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--ink);}
+  .file-label{display:inline-block;padding:13px 26px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:700;font-size:0.95rem;}
+  #fileInput{display:none;}
+  .status{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--ink-dim);text-align:center;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>editor<span>.pdi</span></h1>
+  <label class="file-label">📂 Carregar data.json atual
+    <input type="file" id="fileInput" accept="application/json">
+  </label>
+</div>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>👋 Sobre</h2>
+    <div class="hint">O texto grande e a frase de apresentação do topo do site</div>
+    <label>Título (pode usar &lt;br&gt; pra quebrar linha)</label>
+    <textarea id="s-titulo"></textarea>
+    <label>Texto de apresentação</label>
+    <textarea id="s-lead"></textarea>
+    <div class="row">
+      <div><label>Cidade/local</label><input type="text" id="s-local"></div>
+      <div><label>Instituição</label><input type="text" id="s-instituicao"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Metas</h2>
+    <div class="hint">Cada card de meta que aparece na seção "Onde eu quero chegar"</div>
+    <div id="metasList"></div>
+    <button class="add-btn" onclick="addMeta()">+ adicionar meta</button>
+  </div>
+
+  <div class="card">
+    <h2>📚 Plano de estudos</h2>
+    <div class="hint">Cada linha da lista de estudos, com categoria e prioridade</div>
+    <div id="estudosList"></div>
+    <button class="add-btn" onclick="addEstudo()">+ adicionar tema de estudo</button>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Projetos</h2>
+    <div class="hint">Os cards de projeto, estilo post, com os links</div>
+    <div id="projetosList"></div>
+    <button class="add-btn" onclick="addProjeto()">+ adicionar projeto</button>
+  </div>
+
+  <div class="card">
+    <h2>📬 Contato</h2>
+    <div class="row">
+      <div><label>LinkedIn (link completo)</label><input type="url" id="c-linkedin"></div>
+      <div><label>GitHub (link completo)</label><input type="url" id="c-github"></div>
+    </div>
+    <label>E-mail</label>
+    <input type="email" id="c-email">
+  </div>
+
+</div>
+
+<div class="footer-actions">
+  <div style="width:100%;text-align:center;">
+    <button class="btn btn-primary" onclick="baixarJson()">⬇ Baixar data.json atualizado</button>
+    <div class="status">Depois de baixar, troque o arquivo <b>data.json</b> no seu repositório do GitHub.</div>
+  </div>
+</div>
+
+<script>
+let metas = [], estudos = [], projetos = [];
+
+function el(tag, attrs, html){
+  const e = document.createElement(tag);
+  Object.entries(attrs || {}).forEach(([k,v]) => e.setAttribute(k,v));
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+
+/* ---------- METAS ---------- */
+function addMeta(data){
+  const idx = metas.length;
+  metas.push(data || {titulo:'', texto:''});
+  renderMetas();
+}
+function renderMetas(){
+  const box = document.getElementById('metasList');
+  box.innerHTML = '';
+  metas.forEach((m, i) => {
+    const block = el('div', {class:'item-block'});
+    block.innerHTML = `
+      <button class="remove" onclick="removeMeta(${i})">✕ remover</button>
+      <label>Título (pode incluir um emoji no começo)</label>
+      <input type="text" value="${attrEsc(m.titulo)}" oninput="metas[${i}].titulo=this.value">
+      <label>Descrição</label>
+      <textarea oninput="metas[${i}].texto=this.value">${m.texto||''}</textarea>
+    `;
+    box.appendChild(block);
+  });
+}
+function removeMeta(i){ metas.splice(i,1); renderMetas(); }
+
+/* ---------- ESTUDOS ---------- */
+function addEstudo(data){
+  estudos.push(data || {nome:'', categoria:'programacao', prioridade:'media'});
+  renderEstudos();
+}
+function renderEstudos(){
+  const box = document.getElementById('estudosList');
+  box.innerHTML = '';
+  estudos.forEach((e, i) => {
+    const block = el('div', {class:'item-block'});
+    block.innerHTML = `
+      <button class="remove" onclick="removeEstudo(${i})">✕ remover</button>
+      <label>Nome do tema</label>
+      <input type="text" value="${attrEsc(e.nome)}" oninput="estudos[${i}].nome=this.value">
+      <div class="row">
+        <div>
+          <label>Categoria</label>
+          <select onchange="estudos[${i}].categoria=this.value">
+            <option value="programacao" ${e.categoria==='programacao'?'selected':''}>Programação</option>
+            <option value="linguagens" ${e.categoria==='linguagens'?'selected':''}>Linguagens</option>
+            <option value="pessoal" ${e.categoria==='pessoal'?'selected':''}>Desenvolvimento pessoal</option>
+          </select>
+        </div>
+        <div>
+          <label>Prioridade</label>
+          <select onchange="estudos[${i}].prioridade=this.value">
+            <option value="alta" ${e.prioridade==='alta'?'selected':''}>Alta</option>
+            <option value="media" ${e.prioridade==='media'?'selected':''}>Média</option>
+            <option value="baixa" ${e.prioridade==='baixa'?'selected':''}>Baixa</option>
+          </select>
+        </div>
+      </div>
+    `;
+    box.appendChild(block);
+  });
+}
+function removeEstudo(i){ estudos.splice(i,1); renderEstudos(); }
+
+/* ---------- PROJETOS ---------- */
+function addProjeto(data){
+  projetos.push(data || {titulo:'', contexto:'projeto em grupo', descricao:'', linkRepo:'', linkPost:''});
+  renderProjetos();
+}
+function renderProjetos(){
+  const box = document.getElementById('projetosList');
+  box.innerHTML = '';
+  projetos.forEach((p, i) => {
+    const block = el('div', {class:'item-block'});
+    block.innerHTML = `
+      <button class="remove" onclick="removeProjeto(${i})">✕ remover</button>
+      <label>Título do projeto</label>
+      <input type="text" value="${attrEsc(p.titulo)}" oninput="projetos[${i}].titulo=this.value">
+      <label>Contexto (ex: "projeto em grupo", "TCC", "exercício")</label>
+      <input type="text" value="${attrEsc(p.contexto)}" oninput="projetos[${i}].contexto=this.value">
+      <label>Descrição</label>
+      <textarea oninput="projetos[${i}].descricao=this.value">${p.descricao||''}</textarea>
+      <div class="row">
+        <div><label>Link do repositório</label><input type="url" value="${attrEsc(p.linkRepo)}" oninput="projetos[${i}].linkRepo=this.value"></div>
+        <div><label>Link do post/publicação</label><input type="url" value="${attrEsc(p.linkPost)}" oninput="projetos[${i}].linkPost=this.value"></div>
+      </div>
+    `;
+    box.appendChild(block);
+  });
+}
+function removeProjeto(i){ projetos.splice(i,1); renderProjetos(); }
+
+function attrEsc(str){ return (str||'').replace(/"/g,'&quot;'); }
+
+/* ---------- carregar JSON existente ---------- */
+document.getElementById('fileInput').addEventListener('change', function(ev){
+  const file = ev.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const data = JSON.parse(e.target.result);
+      preencherFormulario(data);
+    }catch(err){
+      alert('Esse arquivo não parece ser um JSON válido.');
+    }
+  };
+  reader.readAsText(file);
+});
+
+function preencherFormulario(data){
+  const s = data.sobre || {};
+  document.getElementById('s-titulo').value = s.titulo || '';
+  document.getElementById('s-lead').value = s.lead || '';
+  document.getElementById('s-local').value = s.local || '';
+  document.getElementById('s-instituicao').value = s.instituicao || '';
+
+  metas = data.metas || [];
+  estudos = data.estudos || [];
+  projetos = data.projetos || [];
+  renderMetas(); renderEstudos(); renderProjetos();
+
+  const c = data.contato || {};
+  document.getElementById('c-linkedin').value = c.linkedin || '';
+  document.getElementById('c-github').value = c.github || '';
+  document.getElementById('c-email').value = c.email || '';
+}
+
+/* ---------- baixar JSON atualizado ---------- */
+function baixarJson(){
+  const data = {
+    sobre: {
+      titulo: document.getElementById('s-titulo').value,
+      lead: document.getElementById('s-lead').value,
+      local: document.getElementById('s-local').value,
+      instituicao: document.getElementById('s-instituicao').value
+    },
+    metas: metas,
+    estudos: estudos,
+    projetos: projetos,
+    contato: {
+      linkedin: document.getElementById('c-linkedin').value,
+      github: document.getElementById('c-github').value,
+      email: document.getElementById('c-email').value
+    }
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// começa com os campos vazios — use "Carregar data.json atual" pra puxar o conteúdo de hoje
+</script>
+
+</body>
+</html>

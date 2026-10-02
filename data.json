@@ -1,0 +1,56 @@
+{
+  "sobre": {
+    "titulo": "Dany está construindo o próximo capítulo em dev.",
+    "lead": "Estudante de Ciência da Computação e desenvolvedor em formação, de Tarumirim/MG. Esse espaço é onde eu organizo minhas metas, o que estou estudando e os projetos que vou publicando pelo caminho.",
+    "local": "Tarumirim, MG",
+    "instituicao": "Faculdades Doctum de Caratinga"
+  },
+  "metas": [
+    {
+      "titulo": "🎯 Conquistar um estágio",
+      "texto": "Estágio em desenvolvimento web ou mobile, colocando em prática o que venho estudando em Java e JavaScript."
+    },
+    {
+      "titulo": "💻 Fechar a formação em andamento",
+      "texto": "Concluir a trilha atual de Java/JavaScript com uma base sólida em POO, testes e boas práticas de Git."
+    },
+    {
+      "titulo": "🚀 Publicar mais projetos",
+      "texto": "Tirar projetos do papel, subir no GitHub e compartilhar o processo no LinkedIn com constância."
+    },
+    {
+      "titulo": "📚 Fortalecer fundamentos de Ciência da Computação",
+      "texto": "Manter estruturas de dados, algoritmos e lógica afiados junto com as disciplinas da faculdade."
+    }
+  ],
+  "estudos": [
+    { "nome": "Java — POO (encapsulamento, herança, interfaces)", "categoria": "programacao", "prioridade": "alta" },
+    { "nome": "JavaScript / Node.js", "categoria": "programacao", "prioridade": "alta" },
+    { "nome": "Estruturas de dados e algoritmos", "categoria": "programacao", "prioridade": "media" },
+    { "nome": "Git / fluxo de versionamento", "categoria": "programacao", "prioridade": "baixa" },
+    { "nome": "Inglês técnico para documentação", "categoria": "linguagens", "prioridade": "media" },
+    { "nome": "Comunicação para entrevistas técnicas", "categoria": "pessoal", "prioridade": "alta" },
+    { "nome": "Organização e gestão do tempo de estudo", "categoria": "pessoal", "prioridade": "media" }
+  ],
+  "projetos": [
+    {
+      "titulo": "RotaApp",
+      "contexto": "projeto em grupo",
+      "descricao": "App de transporte escolar feito em Python/React Native com backend em Firebase, com relatório ABNT e apresentação do projeto.",
+      "linkRepo": "https://github.com/",
+      "linkPost": "https://www.linkedin.com/"
+    },
+    {
+      "titulo": "Bot de caronas no WhatsApp",
+      "contexto": "projeto em grupo",
+      "descricao": "Bot em Python rodando via Twilio no WhatsApp: identifica a pessoa pelo nome do perfil, pergunta se ela vai de ônibus naquele dia e monta a lista de quem vai. À tarde/noite, pergunta se ela volta de ônibus ou de carona — se for carona, o nome sai da lista, avisando o motorista de quem ele ainda precisa buscar.",
+      "linkRepo": "https://github.com/",
+      "linkPost": "https://www.linkedin.com/"
+    }
+  ],
+  "contato": {
+    "linkedin": "https://www.linkedin.com/",
+    "github": "https://github.com/",
+    "email": "seuemail@exemplo.com"
+  }
+}

@@ -22,55 +22,17 @@
     --med: #b8790a;
     --low: #1f9c78;
   }
-
   *{margin:0;padding:0;box-sizing:border-box;}
-
   html{scroll-behavior:smooth;}
-
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Work Sans', sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-
-  h1,h2,h3,.display{
-    font-family:'Outfit', sans-serif;
-    font-weight:800;
-    letter-spacing:-0.02em;
-  }
-
-  .mono{
-    font-family:'JetBrains Mono', monospace;
-  }
-
+  body{background:var(--bg);color:var(--ink);font-family:'Work Sans', sans-serif;line-height:1.6;overflow-x:hidden;}
+  h1,h2,h3,.display{font-family:'Outfit', sans-serif;font-weight:800;letter-spacing:-0.02em;}
+  .mono{font-family:'JetBrains Mono', monospace;}
   a{color:inherit;text-decoration:none;}
-
   ::selection{background:var(--pink);color:#fff;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber-ink);outline-offset:3px;border-radius:4px;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
 
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--amber-ink);
-    outline-offset:3px;
-    border-radius:4px;
-  }
-
-  .wrap{
-    max-width:1100px;
-    margin:0 auto;
-    padding:0 32px;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed;
-    top:0;left:0;right:0;
-    z-index:100;
-    padding:20px 0;
-    background:rgba(255,255,255,0.75);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(36,17,39,0.08);
-  }
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);border-bottom:1px solid rgba(36,17,39,0.08);}
   nav .wrap{display:flex;justify-content:space-between;align-items:center;}
   .brand{font-family:'Outfit',sans-serif;font-weight:900;font-size:1.15rem;}
   .brand span{color:var(--orange);}
@@ -78,191 +40,49 @@
   .navlinks a{opacity:0.75;transition:opacity .2s, color .2s;}
   .navlinks a:hover{opacity:1;color:var(--pink);}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    padding-top:80px;
-    overflow:hidden;
-  }
-
-  .glow{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:0.45;
-    z-index:0;
-    mix-blend-mode:multiply;
-    animation:drift 16s ease-in-out infinite alternate;
-  }
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:80px;overflow:hidden;}
+  .glow{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.45;z-index:0;mix-blend-mode:multiply;animation:drift 16s ease-in-out infinite alternate;}
   .glow.g1{width:480px;height:480px;background:var(--orange);top:-120px;right:-100px;}
   .glow.g2{width:420px;height:420px;background:var(--pink);bottom:-140px;left:-100px;animation-delay:-6s;}
   .glow.g3{width:300px;height:300px;background:var(--amber);top:40%;left:55%;animation-delay:-3s;opacity:0.3;}
-
-  @keyframes drift{
-    0%{transform:translate(0,0) scale(1);}
-    100%{transform:translate(30px,-30px) scale(1.08);}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .glow{animation:none;}
-  }
-
+  @keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(30px,-30px) scale(1.08);}}
+  @media (prefers-reduced-motion: reduce){.glow{animation:none;}}
   .hero-content{position:relative;z-index:1;}
-
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.85rem;
-    color:var(--pink);
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-  }
-  .eyebrow::before{
-    content:'';
-    width:8px;height:8px;border-radius:50%;
-    background:var(--pink);
-    box-shadow:0 0 12px rgba(247,37,133,0.5);
-  }
-
-  .hero h1{
-    font-size:clamp(2.6rem, 6vw, 4.6rem);
-    line-height:1.03;
-    background:linear-gradient(100deg, var(--ink) 30%, var(--pink) 65%, var(--orange) 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    margin-bottom:22px;
-  }
-
-  .hero p.lead{
-    max-width:560px;
-    font-size:1.08rem;
-    color:var(--ink-dim);
-    margin-bottom:32px;
-  }
-
-  .hero-meta{
-    display:flex;
-    gap:28px;
-    flex-wrap:wrap;
-    font-size:0.9rem;
-    color:var(--ink-dim);
-  }
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--pink);display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px rgba(247,37,133,0.5);}
+  .hero h1{font-size:clamp(2.6rem, 6vw, 4.6rem);line-height:1.03;background:linear-gradient(100deg, var(--ink) 30%, var(--pink) 65%, var(--orange) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:22px;}
+  .hero p.lead{max-width:560px;font-size:1.08rem;color:var(--ink-dim);margin-bottom:32px;}
+  .hero-meta{display:flex;gap:28px;flex-wrap:wrap;font-size:0.9rem;color:var(--ink-dim);}
   .hero-meta div{display:flex;align-items:center;gap:8px;}
   .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);}
-
   .cta-row{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;}
-  .btn{
-    padding:14px 28px;
-    border-radius:100px;
-    font-weight:600;
-    font-size:0.95rem;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    transition:transform .2s, box-shadow .2s;
-  }
-  .btn-primary{
-    background:linear-gradient(120deg, var(--orange), var(--pink));
-    color:#fff;
-    box-shadow:0 8px 30px rgba(247,37,133,0.3);
-  }
+  .btn{padding:14px 28px;border-radius:100px;font-weight:600;font-size:0.95rem;display:inline-flex;align-items:center;gap:8px;transition:transform .2s, box-shadow .2s;}
+  .btn-primary{background:linear-gradient(120deg, var(--orange), var(--pink));color:#fff;box-shadow:0 8px 30px rgba(247,37,133,0.3);}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(247,37,133,0.42);}
-  .btn-ghost{
-    border:1px solid rgba(36,17,39,0.18);
-    color:var(--ink);
-  }
+  .btn-ghost{border:1px solid rgba(36,17,39,0.18);color:var(--ink);}
   .btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
 
-  /* ---------- SECTION SHARED ---------- */
   section{padding:110px 0;position:relative;}
   .section-head{margin-bottom:56px;max-width:640px;}
-  .section-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.8rem;
-    color:var(--orange);
-    margin-bottom:14px;
-    display:block;
-  }
+  .section-tag{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--orange);margin-bottom:14px;display:block;}
   .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;}
   .section-head p{color:var(--ink-dim);font-size:1.02rem;}
 
-  /* ---------- METAS ---------- */
-  .goals-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:20px;
-  }
-  .goal-card{
-    background:var(--bg-soft);
-    border:1px solid rgba(36,17,39,0.07);
-    border-radius:18px;
-    padding:28px;
-    position:relative;
-    overflow:hidden;
-    transition:transform .25s, border-color .25s;
-  }
-  .goal-card::before{
-    content:'';
-    position:absolute;top:0;left:0;right:0;height:3px;
-    background:linear-gradient(90deg, var(--orange), var(--pink));
-  }
+  .goals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+  .goal-card{background:var(--bg-soft);border:1px solid rgba(36,17,39,0.07);border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:transform .25s, border-color .25s;}
+  .goal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--orange), var(--pink));}
   .goal-card:hover{transform:translateY(-4px);border-color:rgba(255,107,53,0.35);}
   .goal-card h3{font-size:1.1rem;margin-bottom:10px;}
   .goal-card p{color:var(--ink-dim);font-size:0.94rem;}
 
-  /* ---------- ESTUDOS ---------- */
   .study-tabs{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
-  .tab{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.82rem;
-    padding:9px 18px;
-    border-radius:100px;
-    border:1px solid rgba(36,17,39,0.15);
-    cursor:pointer;
-    background:transparent;
-    color:var(--ink-dim);
-    transition:all .2s;
-  }
-  .tab.active, .tab:hover{
-    background:var(--ink);
-    color:#fff;
-    border-color:var(--ink);
-  }
-
+  .tab{font-family:'JetBrains Mono',monospace;font-size:0.82rem;padding:9px 18px;border-radius:100px;border:1px solid rgba(36,17,39,0.15);cursor:pointer;background:transparent;color:var(--ink-dim);transition:all .2s;}
+  .tab.active, .tab:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
   .study-list{display:flex;flex-direction:column;gap:12px;}
-  .study-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    background:var(--bg-soft);
-    border:1px solid rgba(36,17,39,0.07);
-    border-radius:14px;
-    padding:18px 22px;
-  }
+  .study-item{display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--bg-soft);border:1px solid rgba(36,17,39,0.07);border-radius:14px;padding:18px 22px;}
   .study-item .name{font-weight:600;font-size:1rem;}
-  .study-item .cat{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.78rem;
-    color:var(--ink-dim);
-    display:block;
-    margin-top:3px;
-  }
-  .priority{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.76rem;
-    padding:6px 12px;
-    border-radius:100px;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    white-space:nowrap;
-  }
+  .study-item .cat{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink-dim);display:block;margin-top:3px;}
+  .priority{font-family:'JetBrains Mono',monospace;font-size:0.76rem;padding:6px 12px;border-radius:100px;display:flex;align-items:center;gap:7px;white-space:nowrap;}
   .priority::before{content:'';width:7px;height:7px;border-radius:50%;}
   .priority.alta{background:rgba(255,107,53,0.13);color:var(--high);}
   .priority.alta::before{background:var(--high);}
@@ -271,70 +91,28 @@
   .priority.baixa{background:rgba(31,156,120,0.13);color:var(--low);}
   .priority.baixa::before{background:var(--low);}
 
-  /* ---------- PROJETOS ---------- */
-  .post-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:22px;
-  }
-  .post-card{
-    background:var(--bg-soft);
-    border:1px solid rgba(36,17,39,0.07);
-    border-radius:18px;
-    padding:26px;
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    transition:transform .25s, box-shadow .25s;
-  }
-  .post-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 20px 40px rgba(36,17,39,0.12);
-  }
+  .post-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;}
+  .post-card{background:var(--bg-soft);border:1px solid rgba(36,17,39,0.07);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:16px;transition:transform .25s, box-shadow .25s;}
+  .post-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(36,17,39,0.12);}
   .post-top{display:flex;align-items:center;gap:12px;}
-  .avatar{
-    width:38px;height:38px;border-radius:50%;
-    background:linear-gradient(135deg,var(--orange),var(--pink));
-    display:flex;align-items:center;justify-content:center;
-    font-weight:800;font-size:0.95rem;color:#fff;
-    flex-shrink:0;
-  }
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--pink));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.95rem;color:#fff;flex-shrink:0;}
   .post-top .who{font-size:0.9rem;font-weight:600;}
   .post-top .when{font-size:0.78rem;color:var(--ink-dim);}
   .post-card h3{font-size:1.15rem;}
   .post-card p{color:var(--ink-dim);font-size:0.93rem;}
   .post-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;}
-  .chip-link{
-    font-size:0.82rem;
-    font-family:'JetBrains Mono',monospace;
-    padding:8px 14px;
-    border-radius:100px;
-    border:1px solid rgba(36,17,39,0.15);
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    transition:border-color .2s, color .2s;
-  }
+  .chip-link{font-size:0.82rem;font-family:'JetBrains Mono',monospace;padding:8px 14px;border-radius:100px;border:1px solid rgba(36,17,39,0.15);display:inline-flex;align-items:center;gap:6px;transition:border-color .2s, color .2s;}
   .chip-link:hover{border-color:var(--pink);color:var(--pink);}
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:70px 0 50px;
-    border-top:1px solid rgba(36,17,39,0.08);
-    text-align:center;
-  }
+  footer{padding:70px 0 50px;border-top:1px solid rgba(36,17,39,0.08);text-align:center;}
   footer h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:16px;}
   footer p{color:var(--ink-dim);margin-bottom:28px;}
   .foot-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;}
-  .foot-links a{
-    font-size:0.9rem;
-    padding:10px 20px;
-    border-radius:100px;
-    border:1px solid rgba(36,17,39,0.15);
-    transition:all .2s;
-  }
+  .foot-links a{font-size:0.9rem;padding:10px 20px;border-radius:100px;border:1px solid rgba(36,17,39,0.15);transition:all .2s;}
   .foot-links a:hover{border-color:var(--pink);color:var(--pink);}
   .fine{margin-top:40px;font-size:0.8rem;color:rgba(36,17,39,0.4);font-family:'JetBrains Mono',monospace;}
+
+  .empty-note{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--ink-dim);background:var(--bg-soft);padding:16px 20px;border-radius:12px;}
 
   @media (max-width:640px){
     .navlinks{display:none;}
@@ -363,11 +141,11 @@
   <div class="glow g3"></div>
   <div class="wrap hero-content">
     <span class="eyebrow">plano de desenvolvimento — em progresso</span>
-    <h1>Dany está construindo<br>o próximo capítulo em dev.</h1>
-    <p class="lead">Estudante de Ciência da Computação e desenvolvedor em formação, de Tarumirim/MG. Esse espaço é onde eu organizo minhas metas, o que estou estudando e os projetos que vou publicando pelo caminho.</p>
+    <h1 id="heroTitulo">Carregando…</h1>
+    <p class="lead" id="heroLead"></p>
     <div class="hero-meta">
-      <div><span class="dot"></span> Tarumirim, MG</div>
-      <div><span class="dot"></span> Faculdades Doctum de Caratinga</div>
+      <div><span class="dot"></span><span id="heroLocal"></span></div>
+      <div><span class="dot"></span><span id="heroInstituicao"></span></div>
     </div>
     <div class="cta-row">
       <a class="btn btn-primary" href="#metas">Ver minhas metas →</a>
@@ -383,24 +161,7 @@
       <h2>Onde eu quero chegar</h2>
       <p>O foco de agora é sair da formação e entrar no mercado — sem perder o ritmo de aprender coisas novas no caminho.</p>
     </div>
-    <div class="goals-grid">
-      <div class="goal-card">
-        <h3>🎯 Conquistar um estágio</h3>
-        <p>Estágio em desenvolvimento web ou mobile, colocando em prática o que venho estudando em Java e JavaScript.</p>
-      </div>
-      <div class="goal-card">
-        <h3>💻 Fechar a formação em andamento</h3>
-        <p>Concluir a trilha atual de Java/JavaScript com uma base sólida em POO, testes e boas práticas de Git.</p>
-      </div>
-      <div class="goal-card">
-        <h3>🚀 Publicar mais projetos</h3>
-        <p>Tirar projetos do papel, subir no GitHub e compartilhar o processo no LinkedIn com constância.</p>
-      </div>
-      <div class="goal-card">
-        <h3>📚 Fortalecer fundamentos de Ciência da Computação</h3>
-        <p>Manter estruturas de dados, algoritmos e lógica afiados junto com as disciplinas da faculdade.</p>
-      </div>
-    </div>
+    <div class="goals-grid" id="goalsGrid"></div>
   </div>
 </section>
 
@@ -411,44 +172,13 @@
       <h2>O que estou estudando agora</h2>
       <p>Organizado por categoria, com o nível de prioridade de cada tema no momento.</p>
     </div>
-
     <div class="study-tabs">
       <button class="tab active" data-filter="all">Tudo</button>
       <button class="tab" data-filter="programacao">Programação</button>
       <button class="tab" data-filter="linguagens">Linguagens</button>
       <button class="tab" data-filter="pessoal">Desenvolvimento pessoal</button>
     </div>
-
-    <div class="study-list" id="studyList">
-      <div class="study-item" data-cat="programacao">
-        <div><span class="name">Java — POO (encapsulamento, herança, interfaces)</span><span class="cat">programação</span></div>
-        <span class="priority alta">alta</span>
-      </div>
-      <div class="study-item" data-cat="programacao">
-        <div><span class="name">JavaScript / Node.js</span><span class="cat">programação</span></div>
-        <span class="priority alta">alta</span>
-      </div>
-      <div class="study-item" data-cat="programacao">
-        <div><span class="name">Estruturas de dados e algoritmos</span><span class="cat">programação</span></div>
-        <span class="priority media">média</span>
-      </div>
-      <div class="study-item" data-cat="programacao">
-        <div><span class="name">Git / fluxo de versionamento</span><span class="cat">programação</span></div>
-        <span class="priority baixa">baixa</span>
-      </div>
-      <div class="study-item" data-cat="linguagens">
-        <div><span class="name">Inglês técnico para documentação</span><span class="cat">linguagens</span></div>
-        <span class="priority media">média</span>
-      </div>
-      <div class="study-item" data-cat="pessoal">
-        <div><span class="name">Comunicação para entrevistas técnicas</span><span class="cat">desenvolvimento pessoal</span></div>
-        <span class="priority alta">alta</span>
-      </div>
-      <div class="study-item" data-cat="pessoal">
-        <div><span class="name">Organização e gestão do tempo de estudo</span><span class="cat">desenvolvimento pessoal</span></div>
-        <span class="priority media">média</span>
-      </div>
-    </div>
+    <div class="study-list" id="studyList"></div>
   </div>
 </section>
 
@@ -459,40 +189,7 @@
       <h2>O que venho construindo</h2>
       <p>Um resumo rápido de cada projeto — o link leva pro post ou pro repositório completo.</p>
     </div>
-
-    <div class="post-grid">
-      <div class="post-card">
-        <div class="post-top">
-          <div class="avatar">D</div>
-          <div>
-            <div class="who">Dany</div>
-            <div class="when">projeto em grupo</div>
-          </div>
-        </div>
-        <h3>RotaApp</h3>
-        <p>App de transporte escolar feito em Python/React Native com backend em Firebase, com relatório ABNT e apresentação do projeto.</p>
-        <div class="post-links">
-          <a class="chip-link" href="https://github.com/" target="_blank" rel="noopener">↗ repositório</a>
-          <a class="chip-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">↗ post no LinkedIn</a>
-        </div>
-      </div>
-
-      <div class="post-card">
-        <div class="post-top">
-          <div class="avatar">D</div>
-          <div>
-            <div class="who">Dany</div>
-            <div class="when">projeto em grupo</div>
-          </div>
-        </div>
-        <h3>Bot de caronas no WhatsApp</h3>
-        <p>Bot em Python rodando via Twilio no WhatsApp: identifica a pessoa pelo nome do perfil, pergunta se ela vai de ônibus naquele dia e monta a lista de quem vai. À tarde/noite, pergunta se ela volta de ônibus ou de carona — se for carona, o nome sai da lista, avisando o motorista de quem ele ainda precisa buscar.</p>
-        <div class="post-links">
-          <a class="chip-link" href="https://github.com/" target="_blank" rel="noopener">↗ repositório</a>
-          <a class="chip-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">↗ post no LinkedIn</a>
-        </div>
-      </div>
-    </div>
+    <div class="post-grid" id="postGrid"></div>
   </div>
 </section>
 
@@ -501,26 +198,123 @@
     <h2>Bora trocar uma ideia?</h2>
     <p>Sempre aberto a oportunidades de estágio e conversas sobre projetos.</p>
     <div class="foot-links">
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:seuemail@exemplo.com">E-mail</a>
+      <a id="linkLinkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a id="linkGithub" href="#" target="_blank" rel="noopener">GitHub</a>
+      <a id="linkEmail" href="#">E-mail</a>
     </div>
     <div class="fine mono">// atualizado conforme o plano evolui</div>
   </div>
 </footer>
 
 <script>
+const CATEGORIA_LABEL = {
+  programacao: 'programação',
+  linguagens: 'linguagens',
+  pessoal: 'desenvolvimento pessoal'
+};
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.innerText = str ?? '';
+  return div.innerHTML;
+}
+
+function renderSobre(sobre){
+  document.getElementById('heroTitulo').innerHTML = escapeHtml(sobre.titulo);
+  document.getElementById('heroLead').textContent = sobre.lead;
+  document.getElementById('heroLocal').textContent = sobre.local;
+  document.getElementById('heroInstituicao').textContent = sobre.instituicao;
+}
+
+function renderMetas(metas){
+  const grid = document.getElementById('goalsGrid');
+  if (!metas || !metas.length){
+    grid.innerHTML = '<p class="empty-note">Nenhuma meta cadastrada ainda. Use o admin.html pra adicionar.</p>';
+    return;
+  }
+  grid.innerHTML = metas.map(m => `
+    <div class="goal-card">
+      <h3>${escapeHtml(m.titulo)}</h3>
+      <p>${escapeHtml(m.texto)}</p>
+    </div>
+  `).join('');
+}
+
+function renderEstudos(estudos){
+  const list = document.getElementById('studyList');
+  if (!estudos || !estudos.length){
+    list.innerHTML = '<p class="empty-note">Nenhum item cadastrado ainda. Use o admin.html pra adicionar.</p>';
+    return;
+  }
+  list.innerHTML = estudos.map(e => `
+    <div class="study-item" data-cat="${escapeHtml(e.categoria)}">
+      <div><span class="name">${escapeHtml(e.nome)}</span><span class="cat">${escapeHtml(CATEGORIA_LABEL[e.categoria] || e.categoria)}</span></div>
+      <span class="priority ${escapeHtml(e.prioridade)}">${escapeHtml(e.prioridade)}</span>
+    </div>
+  `).join('');
+
   const tabs = document.querySelectorAll('.tab');
   const items = document.querySelectorAll('.study-item');
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+    tab.onclick = () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const filter = tab.dataset.filter;
       items.forEach(item => {
         item.style.display = (filter === 'all' || item.dataset.cat === filter) ? 'flex' : 'none';
       });
-    });
+    };
+  });
+}
+
+function renderProjetos(projetos){
+  const grid = document.getElementById('postGrid');
+  if (!projetos || !projetos.length){
+    grid.innerHTML = '<p class="empty-note">Nenhum projeto cadastrado ainda. Use o admin.html pra adicionar.</p>';
+    return;
+  }
+  grid.innerHTML = projetos.map(p => `
+    <div class="post-card">
+      <div class="post-top">
+        <div class="avatar">D</div>
+        <div>
+          <div class="who">Dany</div>
+          <div class="when">${escapeHtml(p.contexto)}</div>
+        </div>
+      </div>
+      <h3>${escapeHtml(p.titulo)}</h3>
+      <p>${escapeHtml(p.descricao)}</p>
+      <div class="post-links">
+        <a class="chip-link" href="${escapeHtml(p.linkRepo)}" target="_blank" rel="noopener">↗ repositório</a>
+        <a class="chip-link" href="${escapeHtml(p.linkPost)}" target="_blank" rel="noopener">↗ post no LinkedIn</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderContato(contato){
+  if (!contato) return;
+  const linkedin = document.getElementById('linkLinkedin');
+  const github = document.getElementById('linkGithub');
+  const email = document.getElementById('linkEmail');
+  linkedin.href = contato.linkedin || '#';
+  github.href = contato.github || '#';
+  email.href = 'mailto:' + (contato.email || '');
+}
+
+fetch('./data.json')
+  .then(r => r.json())
+  .then(data => {
+    renderSobre(data.sobre || {});
+    renderMetas(data.metas);
+    renderEstudos(data.estudos);
+    renderProjetos(data.projetos);
+    renderContato(data.contato);
+  })
+  .catch(err => {
+    document.getElementById('heroTitulo').textContent = 'Não consegui carregar o conteúdo 😕';
+    document.getElementById('heroLead').textContent = 'Confira se o arquivo data.json está na mesma pasta do index.html.';
+    console.error(err);
   });
 </script>
 
