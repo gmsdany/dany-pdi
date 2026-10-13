@@ -1,0 +1,10 @@
+{
+  "description": "Personal portfolio showcasing a young computer science student's skills, projects, goals, and study plan with a vibrant, interactive, and editable design.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
